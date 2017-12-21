@@ -24,15 +24,18 @@ class HelloWorld extends Module
 
     public function install()
     {
-        if (!parent::install()) {
-            return false;
-        }
-
+        parent::install();
+        $this->registerHook('displayBanner');
         return true;
     }
 
     public function getContent()
     {
         return $this->display(__FILE__, 'helloworld.tpl');
+    }
+
+    public function hookDisplayBanner($params)
+    {
+        return 'Hello World';
     }
 }
