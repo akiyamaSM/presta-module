@@ -53,6 +53,6 @@ class HelloWorld extends Module
     public function hookDisplayBanner($params)
     {
         $this->getConfiguration();
-        return $this->display(__FILE__, 'displaybanner.tpl');
+        return $this->display(__FILE__, 'banner.tpl');
     }
 }
