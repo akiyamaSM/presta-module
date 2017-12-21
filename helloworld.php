@@ -33,6 +33,6 @@ class HelloWorld extends Module
 
     public function getContent()
     {
-        return 'Hello World!';
+        return $this->display(__FILE__, 'helloworld.tpl');
     }
 }
