@@ -29,13 +29,30 @@ class HelloWorld extends Module
         return true;
     }
 
+    private function processConfiguration()
+    {
+        if(Tools::isSubmit('mymod_pc_form')){
+            $name = Tools::getValue('name');
+            Configuration::updateValue('helloworld_name', $name);
+            $this->context->smarty->assign('confirmation', 'ok');
+        }
+    }
+
+    private function getConfiguration()
+    {
+        $name = Configuration::get('helloworld_name');
+        $this->context->smarty->assign('helloworld_name', $name);
+    }
     public function getContent()
     {
+        $this->processConfiguration();
+        $this->getConfiguration();
         return $this->display(__FILE__, 'helloworld.tpl');
     }
 
     public function hookDisplayBanner($params)
     {
-        return 'Hello World';
+        $this->getConfiguration();
+        return $this->display(__FILE__, 'displaybanner.tpl');
     }
 }
